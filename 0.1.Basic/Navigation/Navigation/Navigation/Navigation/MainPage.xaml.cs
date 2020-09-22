@@ -13,6 +13,11 @@ namespace Navigation
         public MainPage()
         {
             InitializeComponent();
+
+            MessagingCenter.Subscribe<Page2>(this, "Hola", async (s) =>
+            {
+                await DisplayAlert("Saludo", "Hola", "Ok");
+            });
         }
 
         private async void onClick(object sender, EventArgs e)

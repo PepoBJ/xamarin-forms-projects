@@ -19,6 +19,7 @@ namespace Navigation
 
         private async void onClick(object sender, EventArgs e)
         {
+            MessagingCenter.Send(this, "Hola");
             await Navigation.PushModalAsync(new Page3());
         }
     }
