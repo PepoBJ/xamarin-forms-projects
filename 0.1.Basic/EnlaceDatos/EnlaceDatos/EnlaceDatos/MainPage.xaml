@@ -13,16 +13,21 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         
         <ListView ItemsSource="{Binding Discos, Mode=TwoWay}" 
-                  SelectedItem="{Binding DiscoSeleccionado, Mode=TwoWay}"/>
+                  SelectedItem="{Binding DiscoSeleccionado, Mode=TwoWay}"
+                  x:Name="list1"/>
 
         <StackLayout Grid.Row="1">
             <Label Text="{Binding DiscoSeleccionado.Titulo, Mode=OneWay}" />
             <Label Text="{Binding DiscoSeleccionado.Banda, Mode=OneWay}"/>
+            <Label Text="{Binding SelectedItem.Genero, Source={x:Reference list1}}"/>
+            <Label Text="{Binding DiscoSeleccionado.FechaLanzamiento, Mode=OneWay, StringFormat='{}{0:dd/MM/yyyy}'}"/>
             <Button Text="Agregar Disco" Clicked="OnClicked"/>
         </StackLayout>
+        <Button Text="Open Clock" Grid.Row="2" Clicked="click"></Button>
     </Grid>
 
 </ContentPage>

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 
 namespace EnlaceDatos
 {
@@ -31,9 +32,34 @@ namespace EnlaceDatos
             }
         }
 
+        private string genero;
+
+        public string Genero
+        {
+            get { return genero; }
+            set
+            {
+                genero = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private DateTime fechaLanzamiento;
+
+        public DateTime FechaLanzamiento
+        {
+            get { return fechaLanzamiento; }
+            set 
+            { 
+                fechaLanzamiento = value;
+                OnPropertyChanged();
+            }
+        }
+
+
         public override string ToString()
         {
-            return $"{Titulo} {Banda}";
+            return $"{Titulo} {Banda} - {Genero}";
         }
     }
 }

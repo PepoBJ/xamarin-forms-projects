@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:EnlaceDatos"
+             x:Class="EnlaceDatos.Clock">
+
+    <ContentPage.Resources>
+        <local:Maquinaria x:Key="maquinaria"/>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout BindingContext="{Binding Source={StaticResource maquinaria}}"
+                     Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+            <Label FontSize="40" VerticalOptions="Center" HorizontalOptions="Center" 
+                   Text="{Binding Path=Hour, Mode=OneWay, StringFormat='{0: 00}'}" />
+            <Label FontSize="40" VerticalOptions="Center" HorizontalOptions="Center" 
+                   Text=":" Grid.Column="1"/>
+            <Label FontSize="40" VerticalOptions="Center" HorizontalOptions="Center" 
+                   Text="{Binding Minute, Mode=OneWay, StringFormat='{0: 00}'}" Grid.Column="2"/>
+            <Label FontSize="40" VerticalOptions="Center" HorizontalOptions="Center" 
+                   Text=":"  Grid.Column="3"/>
+            <Label FontSize="40" VerticalOptions="Center" HorizontalOptions="Center" 
+                   Text="{Binding Second, Mode=OneWay, StringFormat='{0: 00}'}"  Grid.Column="4"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

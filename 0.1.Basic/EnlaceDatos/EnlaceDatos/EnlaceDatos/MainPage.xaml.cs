@@ -20,5 +20,10 @@ namespace EnlaceDatos
             var datos1 = Resources["datos1"] as Datos;
             datos1.Discos.Add(new Disco { Banda = "Nirvana", Titulo = "Nevermind" });
         }
+
+        private async void click(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new Clock());
+        }
     }
 }
