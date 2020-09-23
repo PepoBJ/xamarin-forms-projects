@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:EnlaceDatos"
+             x:Class="EnlaceDatos.MainPage">
+
+    <ContentPage.Resources>
+        <local:Disco x:Key="disco1" Titulo="let it be" Banda="The Beatles s" />
+        <local:Datos x:Key="datos1" />
+    </ContentPage.Resources>
+
+    <Grid BindingContext="{Binding Source={StaticResource datos1}}">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <ListView ItemsSource="{Binding Discos, Mode=TwoWay}" 
+                  SelectedItem="{Binding DiscoSeleccionado, Mode=TwoWay}"/>
+
+        <StackLayout Grid.Row="1">
+            <Label Text="{Binding DiscoSeleccionado.Titulo, Mode=OneWay}" />
+            <Label Text="{Binding DiscoSeleccionado.Banda, Mode=OneWay}"/>
+            <Button Text="Agregar Disco" Clicked="OnClicked"/>
+        </StackLayout>
+    </Grid>
+
+</ContentPage>
