@@ -57,6 +57,24 @@ namespace EnlaceDatos
         }
 
 
+        private string portada;
+
+        public string Portada
+        {
+            get { return portada; }
+            set { portada = value; }
+        }
+
+        private decimal precio;
+
+        public decimal Precio
+        {
+            get { return precio; }
+            set { precio = value; }
+        }
+
+
+
         public override string ToString()
         {
             return $"{Titulo} {Banda} - {Genero}";

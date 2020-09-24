@@ -7,6 +7,7 @@
     <ContentPage.Resources>
         <local:Disco x:Key="disco1" Titulo="let it be" Banda="The Beatles s" />
         <local:Datos x:Key="datos1" />
+        <local:PrecioConverter x:Key="precioConverter" />
     </ContentPage.Resources>
 
     <Grid BindingContext="{Binding Source={StaticResource datos1}}">
@@ -15,17 +16,41 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        
+
         <ListView ItemsSource="{Binding Discos, Mode=TwoWay}" 
                   SelectedItem="{Binding DiscoSeleccionado, Mode=TwoWay}"
-                  x:Name="list1"/>
+                  HasUnevenRows="True"
+                  x:Name="list1">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <!--<TextCell Text="{Binding Titulo}" Detail="{Binding Banda}" />-->
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition  Width="Auto"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <Image Source="{Binding Portada}" Margin="10" WidthRequest="200" HeightRequest="200"/>
+                            <StackLayout Grid.Column="1">
+                                <Label Text="{Binding Titulo }" FontSize="Large"/>
+                                <Label Text="{Binding Banda }"/>
+                                <Label Text="{Binding Genero }"/>
+                            </StackLayout>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
 
         <StackLayout Grid.Row="1">
             <Label Text="{Binding DiscoSeleccionado.Titulo, Mode=OneWay}" />
             <Label Text="{Binding DiscoSeleccionado.Banda, Mode=OneWay}"/>
             <Label Text="{Binding SelectedItem.Genero, Source={x:Reference list1}}"/>
             <Label Text="{Binding DiscoSeleccionado.FechaLanzamiento, Mode=OneWay, StringFormat='{}{0:dd/MM/yyyy}'}"/>
-            <Button Text="Agregar Disco" Clicked="OnClicked"/>
+            <Label Text="{Binding DiscoSeleccionado.Precio}" 
+                   TextColor="{Binding DiscoSeleccionado.Precio, Mode=OneWay, Converter={StaticResource precioConverter}}" />
+            <Button Text="Agregar Disco" Command="{Binding AgregarDiscoCommand}"/>
         </StackLayout>
         <Button Text="Open Clock" Grid.Row="2" Clicked="click"></Button>
     </Grid>
